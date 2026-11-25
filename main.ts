@@ -15,4 +15,5 @@ const ENTRY = "The meeting about cutting meetings ran long, so we booked a follo
 const outDir = process.env.MAKEFUN_OUTPUT_DIR || "."
 mkdirSync(outDir, { recursive: true })
 const payload = checked(ENTRY)
+if (payload.length < 1) throw new Error("empty entry")
 writeFileSync(join(outDir, "entry.txt"), payload, "utf8")
