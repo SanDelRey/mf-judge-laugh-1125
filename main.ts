@@ -14,4 +14,6 @@ function checked(text: string): string {
 const ENTRY = "The meeting about cutting meetings ran long, so we booked a follow-up to decide which meetings to cut. Attendance is mandatory."
 const outDir = process.env.MAKEFUN_OUTPUT_DIR || "."
 mkdirSync(outDir, { recursive: true })
-writeFileSync(join(outDir, "entry.txt"), checked(ENTRY), "utf8")
+const payload = checked(ENTRY)
+if (payload.length < 1) throw new Error("empty entry")
+writeFileSync(join(outDir, "entry.txt"), payload, "utf8")
